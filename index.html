@@ -24,9 +24,14 @@ body{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background:rgba(255,255,255,.95);backdrop-filter:blur(10px);">
   <div class="container">
     <a class="navbar-brand fw-bold" href="#" onclick="show('home')"><i class="fas fa-graduation-cap me-2"></i>Life Long Learn</a>
-    <ul class="navbar-nav ms-auto d-flex flex-row gap-2">
+    <ul id="navAuth" class="navbar-nav ms-auto d-flex flex-row gap-2">
       <li class="nav-item"><a class="nav-link" href="#" onclick="show('login')">Login</a></li>
       <li class="nav-item"><a class="nav-link" href="#" onclick="show('register')">Register</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" onclick="show('about')">About</a></li>
+    </ul>
+    <ul id="navUser" class="navbar-nav ms-auto d-flex flex-row gap-2" style="display:none;">
+      <li class="nav-item"><a class="nav-link" href="#" onclick="show('about')">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" onclick="logout()">Logout</a></li>
     </ul>
   </div>
 </nav>
@@ -47,13 +52,13 @@ body{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh
   <div id="login" class="section">
     <div class="row justify-content-center"><div class="col-md-5"><div class="card"><div class="card-body p-4">
       <h3 class="text-center mb-3">Login</h3>
-      <form onsubmit="event.preventDefault();show('dashboard');"><div class="mb-3"><input class="form-control" placeholder="Email" required></div><div class="mb-3"><input type="password" class="form-control" placeholder="Password" required></div><button class="btn btn-primary w-100">Login</button></form>
+      <form onsubmit="event.preventDefault();loginSuccess();show('dashboard');"><div class="mb-3"><input class="form-control" placeholder="Email" required></div><div class="mb-3"><input type="password" class="form-control" placeholder="Password" required></div><button class="btn btn-primary w-100">Login</button></form>
     </div></div></div></div>
   </div>
   <div id="register" class="section">
     <div class="row justify-content-center"><div class="col-md-5"><div class="card"><div class="card-body p-4">
       <h3 class="text-center mb-3">Register</h3>
-      <form onsubmit="event.preventDefault();show('questionnaire');"><div class="mb-3"><input class="form-control" placeholder="Email" required></div><div class="mb-3"><input type="password" class="form-control" placeholder="Password" required></div><button class="btn btn-primary w-100">Register</button></form>
+      <form onsubmit="event.preventDefault();loginSuccess();show('questionnaire');"><div class="mb-3"><input class="form-control" placeholder="Email" required></div><div class="mb-3"><input type="password" class="form-control" placeholder="Password" required></div><button class="btn btn-primary w-100">Register</button></form>
     </div></div></div></div>
   </div>
   <div id="questionnaire" class="section">
@@ -91,8 +96,15 @@ body{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh
       </ul>
     </div>
   </div>
+  <!-- ABOUT -->
+  <div id="about" class="section">
+    <div class="row justify-content-center"><div class="col-md-8"><div class="card"><div class="card-body p-4">
+      <h3 class="text-center mb-3">About Life Long Learn</h3>
+      <p>Life Long Learn is your personal AI study assistant. It analyzes academic records and learning style to generate personalized study plans, quizzes, and strategies.</p>
+      <p>Built with Flask and Ollama, running models locally for privacy and speed.</p>
+    </div></div></div></div>
+  </div>
 </div>
-<!-- Chat widget bottom-right -->
 <div style="position:fixed;bottom:20px;right:20px;z-index:9999;">
   <button class="btn btn-primary rounded-circle" style="width:60px;height:60px;" onclick="toggleChat()"><i class="fas fa-comments"></i></button>
   <div id="chatPanel" style="position:absolute;bottom:70px;right:0;width:320px;background:#fff;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.2);">
@@ -102,6 +114,8 @@ body{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh
   </div>
 </div>
 <script>
+function loginSuccess(){document.getElementById('navAuth').style.display='none';document.getElementById('navUser').style.display='flex';}
+function logout(){document.getElementById('navAuth').style.display='flex';document.getElementById('navUser').style.display='none';show('home');}
 function show(id){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
 function select(el){document.querySelectorAll('.qopt').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');}
 function toggleChat(){const p=document.getElementById('chatPanel');p.style.display=p.style.display==='none'?'block':'none';}
