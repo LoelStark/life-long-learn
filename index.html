@@ -1,94 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Life Long Learn — Demo</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <style>
-:root { --primary:#6f42c1; --secondary:#7b68ee; }
-body { background: linear-gradient(135deg,#667eea 0%,#764ba2 100%); min-height:100vh; font-family:'Segoe UI',sans-serif; }
-.card { border-radius:15px; box-shadow:0 10px 30px rgba(0,0,0,.2); transition:transform .3s; }
-.card:hover { transform:translateY(-5px); }
-.btn-primary { background:linear-gradient(135deg,var(--primary),var(--secondary)); border:none; border-radius:25px; padding:12px 30px; font-weight:600; }
-.hero { background:rgba(255,255,255,.95); border-radius:20px; padding:40px; margin-top:40px; }
-.qopt { border:2px solid #e9ecef; border-radius:10px; padding:15px; margin-bottom:10px; cursor:pointer; transition:all .3s; }
-.qopt:hover,.qopt.selected { border-color:var(--primary); background:rgba(111,66,193,.1); }
-.stat-number { font-size:2.5rem; font-weight:bold; color:var(--primary); }
-.fade-in { animation:fadeIn .6s ease-out; }
-@keyframes fadeIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-.section { display:none; } .section.active { display:block; }
+:root{--primary:#6f42c1;--secondary:#7b68ee;}
+body{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;font-family:'Segoe UI',sans-serif;}
+.card{border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,.2);}
+.btn-primary{background:linear-gradient(135deg,var(--primary),var(--secondary));border:none;border-radius:25px;padding:12px 30px;font-weight:600;}
+.hero{background:rgba(255,255,255,.95);border-radius:20px;padding:40px;margin-top:40px;}
+.qopt{border:2px solid #e9ecef;border-radius:10px;padding:15px;margin-bottom:10px;cursor:pointer;transition:all .3s;}
+.qopt:hover,.qopt.selected{border-color:var(--primary);background:rgba(111,66,193,.1);}
+.stat-number{font-size:2.5rem;font-weight:bold;color:var(--primary);}
+.fade-in{animation:fadeIn .6s ease-out;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.section{display:none;} .section.active{display:block;}
+#chatPanel{display:none;}
 </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background:rgba(255,255,255,.95);backdrop-filter:blur(10px);">
   <div class="container">
     <a class="navbar-brand fw-bold" href="#" onclick="show('home')"><i class="fas fa-graduation-cap me-2"></i>Life Long Learn</a>
-    <div class="collapse navbar-collapse show">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="#" onclick="show('home')">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" onclick="show('register')">Register</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" onclick="show('questionnaire')">Questionnaire</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" onclick="show('dashboard')">Dashboard</a></li>
-      <li class="nav-item"><a class="nav-link" href="#" onclick="show('chat')">Chat</a></li>
-      </ul>
-    </div>
+    <ul class="navbar-nav ms-auto d-flex flex-row gap-2">
+      <li class="nav-item"><a class="nav-link" href="#" onclick="show('login')">Login</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" onclick="show('register')">Register</a></li>
+    </ul>
   </div>
 </nav>
-
-<div class="container" style="padding-top:90px;">
-  <!-- HOME -->
+<div class="container" style="padding-top:100px;">
   <div id="home" class="section active">
-    <div class="row justify-content-center"><div class="col-lg-8 text-center fade-in">
-      <h1 class="display-4 fw-bold text-white mb-4">Your Personal AI Study Assistant</h1>
-      <p class="lead text-white mb-4">Life Long Learn transforms your academic records into personalized study plans, quizzes, and learning strategies tailored just for you.</p>
-      <div class="d-flex justify-content-center gap-3">
-        <a class="btn btn-light btn-lg" href="#" onclick="show('register')">Get Started</a>
-        <a class="btn btn-outline-light btn-lg" href="#" onclick="show('dashboard')">View Demo</a>
-      </div>
-    </div></div>
-    <div class="row text-center my-5">
-      <div class="col-md-4 mb-4"><div class="card h-100 border-0 shadow-sm"><div class="card-body p-4 fade-in"><i class="fas fa-brain fa-2x text-primary mb-3"></i><h5>AI-Powered Insights</h5><p class="text-muted">AI analyzes your learning patterns and academic history.</p></div></div></div>
-      <div class="col-md-4 mb-4"><div class="card h-100 border-0 shadow-sm fade-in"><div class="card-body p-4"><i class="fas fa-chess-knight fa-2x text-primary mb-3"></i><h5>Personalized Study Plans</h5><p class="text-muted">Weekly schedules optimized for your learning style.</p></div></div></div>
-      <div class="col-md-4 mb-4"><div class="card h-100 border-0 shadow-sm fade-in"><div class="card-body p-4"><i class="fas fa-question-circle fa-2x text-primary mb-3"></i><h5>Custom Quizzes</h5><p class="text-muted">Flashcards and quizzes adjusted to your skill level.</p></div></div></div>
+    <div class="hero text-center fade-in">
+      <h1 class="display-4 fw-bold mb-3">Your Personal AI Study Assistant</h1>
+      <p class="lead mb-4">Life Long Learn transforms your academic records into personalized study plans, quizzes, and strategies.</p>
+      <a class="btn btn-light btn-lg me-2" href="#" onclick="show('register')">Get Started</a>
+      <a class="btn btn-outline-primary btn-lg" href="#" onclick="show('dashboard')">Start Learning</a>
+    </div>
+    <div class="row text-center my-4 text-white">
+      <div class="col-md-4"><h3>10,000+</h3><p>Trusted by users worldwide</p></div>
+      <div class="col-md-4"><h3>Ollama</h3><p>Using one of the most used AI models globally</p></div>
+      <div class="col-md-4"><h3>95%</h3><p>Report improved study habits</p></div>
     </div>
   </div>
-
-  <!-- REGISTER -->
-  <div id="register" class="section">
-    <div class="row justify-content-center"><div class="col-md-6"><div class="card"><div class="card-body p-4">
-      <h3 class="text-center mb-4">Create Account</h3>
-      <form onsubmit="event.preventDefault(); alert('Registered (demo)'); show('questionnaire');">
-        <div class="mb-3"><label class="form-label">Email</label><input type="email" class="form-control" required></div>
-        <div class="mb-3"><label class="form-label">Password</label><input type="password" class="form-control" required></div>
-        <button class="btn btn-primary w-100">Register</button>
-      </form>
+  <div id="login" class="section">
+    <div class="row justify-content-center"><div class="col-md-5"><div class="card"><div class="card-body p-4">
+      <h3 class="text-center mb-3">Login</h3>
+      <form onsubmit="event.preventDefault();show('dashboard');"><div class="mb-3"><input class="form-control" placeholder="Email" required></div><div class="mb-3"><input type="password" class="form-control" placeholder="Password" required></div><button class="btn btn-primary w-100">Login</button></form>
     </div></div></div></div>
   </div>
-
-  <!-- QUESTIONNAIRE -->
+  <div id="register" class="section">
+    <div class="row justify-content-center"><div class="col-md-5"><div class="card"><div class="card-body p-4">
+      <h3 class="text-center mb-3">Register</h3>
+      <form onsubmit="event.preventDefault();show('questionnaire');"><div class="mb-3"><input class="form-control" placeholder="Email" required></div><div class="mb-3"><input type="password" class="form-control" placeholder="Password" required></div><button class="btn btn-primary w-100">Register</button></form>
+    </div></div></div></div>
+  </div>
   <div id="questionnaire" class="section">
     <div class="row justify-content-center"><div class="col-md-8"><div class="card"><div class="card-body p-4">
-      <h3 class="text-center mb-4">Learning Style Assessment</h3>
-      <p class="text-muted text-center">Select your preferred learning style:</p>
+      <h3 class="text-center mb-3">Learning Style Assessment</h3>
       <div class="qopt" onclick="select(this)">Visual — diagrams and charts</div>
       <div class="qopt" onclick="select(this)">Reading — text and notes</div>
       <div class="qopt" onclick="select(this)">Auditory — lectures and discussion</div>
       <div class="qopt" onclick="select(this)">Kinesthetic — hands-on practice</div>
-      <div class="text-center mt-3"><button class="btn btn-primary" onclick="show('dashboard')">Continue</button></div>
+      <div class="text-center mt-3"><button class="btn btn-primary" onclick="show('results')">Continue</button></div>
     </div></div></div></div>
   </div>
-
-  <!-- DASHBOARD -->
+  <div id="results" class="section">
+    <div class="row justify-content-center"><div class="col-md-8"><div class="card"><div class="card-body p-4">
+      <h3 class="text-center mb-3">Your Study Methods</h3>
+      <ul class="list-group"><li class="list-group-item">Spaced repetition sessions</li><li class="list-group-item">Visual mind maps</li><li class="list-group-item">Short daily quizzes</li></ul>
+      <div class="text-center mt-3"><button class="btn btn-primary" onclick="show('dashboard')">Go to Dashboard</button></div>
+    </div></div></div></div>
+  </div>
   <div id="dashboard" class="section">
     <div class="hero fade-in">
       <h2 class="fw-bold mb-3">Welcome back!</h2>
       <div class="row text-center">
-        <div class="col-md-3"><div class="stat-number">4</div><div class="stat-label">Subjects</div></div>
-        <div class="col-md-3"><div class="stat-number">12</div><div class="stat-label">Quizzes Taken</div></div>
-        <div class="col-md-3"><div class="stat-number">85%</div><div class="stat-label">Avg Score</div></div>
-        <div class="col-md-3"><div class="stat-number">3</div><div class="stat-label">Study Plans</div></div>
+        <div class="col-md-3"><div class="stat-number">4</div><div>Subjects</div></div>
+        <div class="col-md-3"><div class="stat-number">12</div><div>Quizzes</div></div>
+        <div class="col-md-3"><div class="stat-number">85%</div><div>Avg Score</div></div>
+        <div class="col-md-3"><div class="stat-number">3</div><div>Plans</div></div>
       </div>
       <hr>
       <h5>Personalized Study Plan</h5>
@@ -99,34 +91,20 @@ body { background: linear-gradient(135deg,#667eea 0%,#764ba2 100%); min-height:1
       </ul>
     </div>
   </div>
-  <!-- CHAT -->
-  <div id="chat" class="section">
-    <div class="row justify-content-center"><div class="col-md-8"><div class="card"><div class="card-body p-4">
-      <h3 class="text-center mb-3">Chat with your AI Tutor</h3>
-      <div id="chatlog" style="height:300px;overflow-y:auto;border:1px solid #e9ecef;border-radius:10px;padding:10px;margin-bottom:10px;background:#fafafa;"></div>
-      <div class="input-group">
-        <input id="chatinput" class="form-control" placeholder="Ask about your studies...">
-        <button class="btn btn-primary" onclick="sendChat()">Send</button>
-      </div>
-    </div></div></div></div>
+</div>
+<!-- Chat widget bottom-right -->
+<div style="position:fixed;bottom:20px;right:20px;z-index:9999;">
+  <button class="btn btn-primary rounded-circle" style="width:60px;height:60px;" onclick="toggleChat()"><i class="fas fa-comments"></i></button>
+  <div id="chatPanel" style="position:absolute;bottom:70px;right:0;width:320px;background:#fff;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.2);">
+    <div style="padding:10px;background:#6f42c1;color:#fff;border-radius:10px 10px 0 0;">AI Tutor</div>
+    <div id="chatlog" style="height:260px;overflow-y:auto;padding:10px;"></div>
+    <div class="input-group p-2"><input id="chatinput" class="form-control" placeholder="Ask..."><button class="btn btn-primary" onclick="sendChat()">Send</button></div>
   </div>
 </div>
 <script>
-function sendChat(){
-  const inp=document.getElementById('chatinput');
-  const log=document.getElementById('chatlog');
-  const msg=inp.value.trim();
-  if(!msg) return;
-  log.innerHTML += '<div class="mb-2"><b>You:</b> '+msg+'</div>';
-  inp.value='';
-  setTimeout(()=>{
-    log.innerHTML += '<div class="mb-2 text-primary"><b>AI Tutor:</b> Great question! Based on your learning style, I suggest spaced repetition and short daily sessions. Keep practicing!</div>';
-    log.scrollTop=log.scrollHeight;
-  },500);
-  log.scrollTop=log.scrollHeight;
-}
-function show(id){ document.querySelectorAll('.section').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); window.scrollTo(0,0);}
-function select(el){ document.querySelectorAll('.qopt').forEach(o=>o.classList.remove('selected')); el.classList.add('selected'); }
+function show(id){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
+function select(el){document.querySelectorAll('.qopt').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');}
+function toggleChat(){const p=document.getElementById('chatPanel');p.style.display=p.style.display==='none'?'block':'none';}
+function sendChat(){const inp=document.getElementById('chatinput');const log=document.getElementById('chatlog');const msg=inp.value.trim();if(!msg)return;log.innerHTML+='<div class="mb-2"><b>You:</b> '+msg+'</div>';inp.value='';setTimeout(()=>{log.innerHTML+='<div class="mb-2 text-primary"><b>AI Tutor:</b> Great question! Based on your learning style, try spaced repetition and short daily sessions.</div>';log.scrollTop=log.scrollHeight;},500);log.scrollTop=log.scrollHeight;}
 </script>
-</body>
-</html>
+</body></html>
