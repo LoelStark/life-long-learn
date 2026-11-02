@@ -31,6 +31,7 @@ body { background: linear-gradient(135deg,#667eea 0%,#764ba2 100%); min-height:1
         <li class="nav-item"><a class="nav-link" href="#" onclick="show('register')">Register</a></li>
         <li class="nav-item"><a class="nav-link" href="#" onclick="show('questionnaire')">Questionnaire</a></li>
         <li class="nav-item"><a class="nav-link" href="#" onclick="show('dashboard')">Dashboard</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" onclick="show('chat')">Chat</a></li>
       </ul>
     </div>
   </div>
@@ -98,9 +99,32 @@ body { background: linear-gradient(135deg,#667eea 0%,#764ba2 100%); min-height:1
       </ul>
     </div>
   </div>
+  <!-- CHAT -->
+  <div id="chat" class="section">
+    <div class="row justify-content-center"><div class="col-md-8"><div class="card"><div class="card-body p-4">
+      <h3 class="text-center mb-3">Chat with your AI Tutor</h3>
+      <div id="chatlog" style="height:300px;overflow-y:auto;border:1px solid #e9ecef;border-radius:10px;padding:10px;margin-bottom:10px;background:#fafafa;"></div>
+      <div class="input-group">
+        <input id="chatinput" class="form-control" placeholder="Ask about your studies...">
+        <button class="btn btn-primary" onclick="sendChat()">Send</button>
+      </div>
+    </div></div></div></div>
+  </div>
 </div>
-
 <script>
+function sendChat(){
+  const inp=document.getElementById('chatinput');
+  const log=document.getElementById('chatlog');
+  const msg=inp.value.trim();
+  if(!msg) return;
+  log.innerHTML += '<div class="mb-2"><b>You:</b> '+msg+'</div>';
+  inp.value='';
+  setTimeout(()=>{
+    log.innerHTML += '<div class="mb-2 text-primary"><b>AI Tutor:</b> Great question! Based on your learning style, I suggest spaced repetition and short daily sessions. Keep practicing!</div>';
+    log.scrollTop=log.scrollHeight;
+  },500);
+  log.scrollTop=log.scrollHeight;
+}
 function show(id){ document.querySelectorAll('.section').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); window.scrollTo(0,0);}
 function select(el){ document.querySelectorAll('.qopt').forEach(o=>o.classList.remove('selected')); el.classList.add('selected'); }
 </script>
