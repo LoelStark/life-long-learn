@@ -20,3 +20,8 @@ echo "Testing Ollama..."
 ollama run qwen2.5:3b "Explain artificial intelligence in one sentence."
 
 echo "Ollama installation complete!"
+
+#To tun he script, use:
+
+chmod +x install_ollama.sh
+./install_ollama.sh
